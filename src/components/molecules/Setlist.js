@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 
 const Setlist = ({ setNumber, songs }) => {
-    console.log(songs);
+    
   return (
     <>
       <h1>Set {setNumber + 1}</h1>
-      {songs.map(({title, detectivesKey}) => <h3>{`${title} -- ${detectivesKey}`}</h3>)}
+      {songs.map(({title, detectivesKey}) => <h3 key={title}>{`${title} -- ${detectivesKey}`}</h3>)}
     </>
   );
 };

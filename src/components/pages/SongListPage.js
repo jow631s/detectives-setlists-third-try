@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import songList from "../../songList";
 import Setlist from "../molecules/Setlist";
 
@@ -55,26 +55,24 @@ const SongListPage = () => {
     setCreatedSetlists(setListContainer);
   };
 
-  console.log(richardSongs);
-
   return (
     <>
       <div>
         <button onClick={() => createSets(2)}>Generate Two Sets</button>
         <button onClick={() => createSets(3)}>Generate Three Sets</button>
       </div>
-      {createdSetlists.length === 0 ? (
+      {!createdSetlists.length ? (
         <div>
           <h1>ALL SONGS</h1>
           {songList.map((song) => {
             const { title, detectivesKey } = song;
-            return <h2>{`${title} ${detectivesKey}`}</h2>;
+            return <h2 key={title}>{`${title} ${detectivesKey}`}</h2>;
           })}
         </div>
       ) : (
         <>
           {createdSetlists.map((setlist, index) => (
-            <Setlist setNumber={index} songs={setlist}/>
+            <Setlist key={index} setNumber={index} songs={setlist}/>
           ))}
         </>
       )}
