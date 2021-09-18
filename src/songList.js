@@ -777,4 +777,9 @@ const songList = [
   }
 ]
 
+
+for (let song in songList) {
+  songList[song].id = song;
+}
+
 export default songList;

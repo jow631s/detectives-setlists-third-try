@@ -1,44 +1,36 @@
-import React, { useState } from "react";
+import React from "react";
+import { Paper, Typography } from "@mui/material";
 import songList from "../../songList";
-import Setlist from "../molecules/Setlist";
-import { Grid, Typography, TextField } from "@mui/material";
-import { Button } from "@mui/material";
-import useCreatedSetlists from "../../hooks/useCreateSetlists";
+import Navbar from "../molecules/Navbar";
 
 const SongListPage = () => {
-  const [numOfSetlists, setNumOfSetlists] = useState(0);
-  const [numOfSetlistsToShow, setNumOfSetlistsToShow] = useState(0);  
-  const setlists = useCreatedSetlists(numOfSetlistsToShow);
-
-  const handleNumOfSetsChange = (e) => {
-    setNumOfSetlists(e.target.value);
-  };
-
-  
+  const songs = songList;
+  console.log(songs);
 
   return (
     <>
-      <div>
-        <Typography variant="h3" gutterBottom>
-          OPTIONS
-        </Typography>
-        <TextField
-          id="num-of-sets"
-          label="Number Of Sets"
-          value={numOfSetlists}
-          variant="filled"
-          onChange={handleNumOfSetsChange}
-        />
-        <Button onClick={() => setNumOfSetlistsToShow(numOfSetlists)}>Create Sets</Button>
+      <Navbar />
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <div style={{ width: "75%", margin: "1em" }}>
+          <Paper elevation={4}>
+            <div style={{ padding: "3em" }}>
+              <Typography variant="h3" gutterBottom align="center">
+                ALL SONGS
+              </Typography>
+              <div style={{ textAlign: "left" }}>
+                {songs.map(({ title, detectivesKey, id }) => (
+                  <Typography
+                    key={id}
+                    variant="h4"
+                    gutterBottom
+                    component="div"
+                  >{`${title} -- ${detectivesKey}`}</Typography>
+                ))}
+              </div>
+            </div>
+          </Paper>
+        </div>
       </div>
-
-      {setlists.length > 0 && (
-        <>
-          {setlists.map((setlist, index) => (
-            <Setlist key={index} setNumber={index} songs={setlist} />
-          ))}
-        </>
-      )}
     </>
   );
 };

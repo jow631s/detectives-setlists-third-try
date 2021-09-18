@@ -6,6 +6,7 @@ import {
   Link
 } from "react-router-dom";
 import HomePage from './components/pages/HomePage';
+import SetListPage from './components/pages/SetListPage';
 import SongListPage from './components/pages/SongListPage';
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
     <Router>      
         <Switch>
           <Route path="/create-setlist">
-            <SongListPage />
+            <SetListPage />
           </Route>
           <Route path="/all-songs">
             <SongListPage />
