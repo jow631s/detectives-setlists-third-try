@@ -1,78 +1,41 @@
 import React, { useState } from "react";
 import songList from "../../songList";
 import Setlist from "../molecules/Setlist";
+import { Grid, Typography, TextField } from "@mui/material";
+import { Button } from "@mui/material";
+import useCreatedSetlists from "../../hooks/useCreateSetlists";
 
 const SongListPage = () => {
-  const [createdSetlists, setCreatedSetlists] = useState([]);
+  const [numOfSetlists, setNumOfSetlists] = useState(0);
+  const [numOfSetlistsToShow, setNumOfSetlistsToShow] = useState(0);  
+  const setlists = useCreatedSetlists(numOfSetlistsToShow);
 
-  const nikiSongs = songList.filter((song) => {
-    return song.leadSinger === "n";
-  });
-
-  const jSongs = songList.filter((song) => {
-    return song.leadSinger === "j";
-  });
-
-  const richardSongs = songList.filter((song) => {
-    return song.leadSinger === "r";
-  });
-
-  const toadSongs = songList.filter((song) => {
-    return song.leadSinger === "t";
-  });
-
-  const instrumentals = songList.filter((song) => song.leadSinger === "x");
-
-  const closers = songList.filter((song) => song.Closer === "y");
-
-  const createSets = (numOfSets) => {
-    const selectAndRemoveRandomRemainingSong = (singerSongs) => {
-      let randomIndex = Math.floor(Math.random() * singerSongs.length);
-      const { title, detectivesKey } = singerSongs[randomIndex];
-      singerSongs.splice(randomIndex, 1);
-      return { title: title, detectivesKey: detectivesKey };
-    };
-    let setListContainer = [];
-    for (let i = 0; i < numOfSets; i++) {
-      let innerContainer = [];
-      for (let j = 0; j < 16; j++) {
-        if (j % 4 === 0) {
-          innerContainer.push(selectAndRemoveRandomRemainingSong(richardSongs));
-        }
-        if (j % 4 === 1) {
-          innerContainer.push(selectAndRemoveRandomRemainingSong(nikiSongs));
-        }
-        if (j % 4 === 2) {
-          innerContainer.push(selectAndRemoveRandomRemainingSong(jSongs));
-        }
-        if (j % 4 === 3) {
-          innerContainer.push(selectAndRemoveRandomRemainingSong(toadSongs));
-        }
-      }
-      setListContainer.push(innerContainer);
-    }
-    console.log(setListContainer);
-    setCreatedSetlists(setListContainer);
+  const handleNumOfSetsChange = (e) => {
+    setNumOfSetlists(e.target.value);
   };
+
+  
 
   return (
     <>
       <div>
-        <button onClick={() => createSets(2)}>Generate Two Sets</button>
-        <button onClick={() => createSets(3)}>Generate Three Sets</button>
+        <Typography variant="h3" gutterBottom>
+          OPTIONS
+        </Typography>
+        <TextField
+          id="num-of-sets"
+          label="Number Of Sets"
+          value={numOfSetlists}
+          variant="filled"
+          onChange={handleNumOfSetsChange}
+        />
+        <Button onClick={() => setNumOfSetlistsToShow(numOfSetlists)}>Create Sets</Button>
       </div>
-      {!createdSetlists.length ? (
-        <div>
-          <h1>ALL SONGS</h1>
-          {songList.map((song) => {
-            const { title, detectivesKey } = song;
-            return <h2 key={title}>{`${title} ${detectivesKey}`}</h2>;
-          })}
-        </div>
-      ) : (
+
+      {setlists.length > 0 && (
         <>
-          {createdSetlists.map((setlist, index) => (
-            <Setlist key={index} setNumber={index} songs={setlist}/>
+          {setlists.map((setlist, index) => (
+            <Setlist key={index} setNumber={index} songs={setlist} />
           ))}
         </>
       )}
