@@ -777,9 +777,30 @@ const songList = [
   }
 ]
 
+const getRandomItemInArray = (array) => {
+  let randomIndex = Math.floor(Math.random() * array.length);
+  return array[randomIndex];
+}
+
 
 for (let song in songList) {
-  songList[song].id = song;
+  let currentSong = songList[song];
+  if (currentSong.isCloser === 'y') {
+    currentSong.isCloser = true;
+  }
+  if (currentSong.isCloser === 'n') {
+    currentSong.isCloser = false;
+  }
+  currentSong.id = song;
+  currentSong.isInRotation = getRandomItemInArray([true, false]);
+  //assuming runTime will be stored as seconds, so randomly assigning some times between 2 minutes and 4 minutes
+  currentSong.runTime = getRandomItemInArray([120, 150, 180, 210, 240])
+  currentSong.starRating = getRandomItemInArray([1, 2, 3, 4, 5])
+  currentSong.timeoutPeriod = getRandomItemInArray([1, 2, 3])
+  currentSong.tempoRating = getRandomItemInArray([1, 2, 3, 4])
+  currentSong.beatType = getRandomItemInArray([1, 2, 3, 4])
+  currentSong.tags = getRandomItemInArray([{tags:'needs work'}, {tags:'wedding hit'}, {tags:'must have Richie'}])
 }
+
 
 export default songList;

@@ -1,8 +1,5 @@
-import React, { useState } from "react";
-import songList from "../../songList";
-import { Grid, Typography, Paper } from "@mui/material";
-import { Button } from "@mui/material";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import React from "react";
+import { Typography, Paper } from "@mui/material";
 import Navbar from "../molecules/Navbar";
 
 const HomePage = () => {

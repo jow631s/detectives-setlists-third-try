@@ -1,12 +1,14 @@
 import React from "react";
-import { Typography, Paper } from "@mui/material";
+import { Typography } from "@mui/material";
 
-const Setlist = ({ setNumber, songs }) => {
+const Setlist = ({ setNumber, songs}) => {
+  
   return (
     <>
-      <Typography variant='h3' gutterBottom>Set {setNumber + 1}</Typography>
-      {songs.map(({ title, detectivesKey }) => (
+      <Typography key={setNumber} variant='h3' gutterBottom>Set {setNumber + 1}</Typography>
+      {songs.map(({ title, detectivesKey, id }) => (
         <Typography
+          key={id}
           variant="h4"
           gutterBottom
           component="div"

@@ -5,7 +5,7 @@ import Navbar from "../molecules/Navbar";
 
 const SongListPage = () => {
   const songs = songList;
-  console.log(songs);
+  console.log(songs.filter((song) => song.isCloser === true));
 
   return (
     <>

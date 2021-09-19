@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Setlist from "../molecules/Setlist";
 import { Typography, TextField } from "@mui/material";
 import { Button, Paper } from "@mui/material";
-import useCreatedSetlists from "../../hooks/useCreateSetlists";
+import useCreatedSetlists from "../../hooks/useCreatedSetlists";
 import Navbar from "../molecules/Navbar";
 
 const SetListPage = () => {
@@ -47,7 +47,7 @@ const SetListPage = () => {
               <Paper elevation={4}>
                 <div style={{ textAlign: "left", padding: "2em" }}>
                   {setlists.map((setlist, index) => (
-                    <Setlist key={index} setNumber={index} songs={setlist} />
+                    <Setlist key={index} setNumber={index} songs={setlist}/>
                   ))}
                 </div>
               </Paper>
