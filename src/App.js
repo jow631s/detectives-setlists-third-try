@@ -1,23 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route  
+} from "react-router-dom";
+import HomePage from './components/pages/HomePage';
+import SetListPage from './components/pages/SetListPage';
 import SongListPage from './components/pages/SongListPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-       <SongListPage />
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>      
+        <Switch>
+          <Route path="/create-setlist">
+            <SetListPage />
+          </Route>
+          <Route path="/all-songs">
+            <SongListPage />
+          </Route>          
+          <Route path="/">
+            <HomePage />
+          </Route>
+        </Switch>      
+    </Router>
   );
 }
 
