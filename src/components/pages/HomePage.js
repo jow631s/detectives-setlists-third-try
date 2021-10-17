@@ -16,6 +16,7 @@ import {
   MenuItem,
 } from "@mui/material";
 import Navbar from "../molecules/Navbar";
+import songApi from "../../services/SongListAPI"
 
 const defaultFieldValues = {
   title: "",
@@ -39,13 +40,14 @@ const HomePage = () => {
 
   const handleAddSongs = async () => {
     setLoading(true);
-    // try {
-    //   await Song.addMultipleSongs(songsBeingAdded)
-    //   setSnack('Songs Added!')
-    // } catch (error) {
-    //   console.error(error)
-    //   setSnack('Error adding songs')
-    // }
+    try {
+      songsToAdd.map(console.log);
+      songsToAdd.map(songApi.addSong);
+       setSnack('Songs Added!')
+     } catch (error) {
+       console.error(error)
+       setSnack('Error adding songs')
+     }
     setLoading(false);
     setShowSnack(true);
     setShowAddSongModal(false);

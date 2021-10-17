@@ -1,12 +1,14 @@
 import React from "react";
 import { Paper, Typography } from "@mui/material";
-import songList from "../../songList";
+import songApi from "../../services/SongListAPI"
 import Navbar from "../molecules/Navbar";
 
-const SongListPage = () => {
-  const songs = songList;
-  console.log(songs.filter((song) => song.isCloser === true));
 
+const SongListPage = () => {
+  const songList = songApi.getData();
+  console.log(songList);
+  this.setState(songList);
+  
   return (
     <>
       <Navbar />
@@ -18,7 +20,7 @@ const SongListPage = () => {
                 ALL SONGS
               </Typography>
               <div style={{ textAlign: "left" }}>
-                {songs.map(({ title, detectivesKey, id }) => (
+                {songList.map(({ title, detectivesKey, id }) => (
                   <Typography
                     key={id}
                     variant="h4"
@@ -33,6 +35,6 @@ const SongListPage = () => {
       </div>
     </>
   );
-};
+}
 
 export default SongListPage;
