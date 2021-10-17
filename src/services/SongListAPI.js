@@ -5,6 +5,18 @@ axios.defaults.headers.common['Accept'] = 'application/json'
 
 const BASE_URL = 'http://localhost:8080/setlists'
 
+class SongListApi {
+    static async get
+
+}
+
+
+
+
+
+
+
+
 const getData = async () => {
     axios.get(`${BASE_URL}/listSongs`, { data: null })
         .then(response => {

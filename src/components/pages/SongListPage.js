@@ -1,13 +1,24 @@
-import React from "react";
+import React, {useState, useEffect } from "react";
 import { Paper, Typography } from "@mui/material";
 import songApi from "../../services/SongListAPI"
 import Navbar from "../molecules/Navbar";
 
 
 const SongListPage = () => {
-  const songList = songApi.getData();
-  console.log(songList);
-  this.setState(songList);
+  const [songList, setSongList] = useState([]);
+
+
+  useEffect(() => {
+    (async () => {
+      const existingSongList = await songApi.getData();
+      if (existingSongList) {
+        setSongList(existingSongList)
+      } else {
+        console.log('this did not work')
+        return;
+      }
+    })();
+  }, []);
   
   return (
     <>
