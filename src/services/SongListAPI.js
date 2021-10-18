@@ -2,37 +2,26 @@ import axios from "axios";
 
 axios.defaults.headers.common['Content-Type'] = 'application/json'
 axios.defaults.headers.common['Accept'] = 'application/json'
-
 const BASE_URL = 'http://localhost:8080/setlists'
 
-class SongListApi {
-    static async get
+export class SongListAPI {
 
-}
-
-
-
-
-
-
-
-
-const getData = async () => {
-    axios.get(`${BASE_URL}/listSongs`, { data: null })
-        .then(response => {
-            console.log(response.data);
-            this.setState({songs: response.data});
-        }).catch(error => {
-            console.log(error);
-        })
+static async getData() {
+    const response = await axios.get(`${BASE_URL}/listSongs`, { data: null })
+    if (response) {
+        console.log(response.data)
+        return response.data;
+    } else {
+        console.log('oh noooooo')
+    }
 };
 
-const addSong = (songJson) => {
+static async addSong(songJson) {
     axios.post(`${BASE_URL}/addSong`, songJson)
         .then(res => {
             console.log(songJson);
             return res;
         })
-};
+}
 
-export default { getData, addSong };
+};

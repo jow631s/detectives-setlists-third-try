@@ -1,16 +1,16 @@
 import React, {useState, useEffect } from "react";
 import { Paper, Typography } from "@mui/material";
-import songApi from "../../services/SongListAPI"
+import {SongListAPI} from "../../services/SongListAPI"
 import Navbar from "../molecules/Navbar";
 
 
 const SongListPage = () => {
   const [songList, setSongList] = useState([]);
 
-
   useEffect(() => {
     (async () => {
-      const existingSongList = await songApi.getData();
+      const existingSongList = await SongListAPI.getData();
+      console.log(existingSongList);
       if (existingSongList) {
         setSongList(existingSongList)
       } else {
