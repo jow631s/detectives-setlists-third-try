@@ -16,7 +16,7 @@ import {
   MenuItem,
 } from "@mui/material";
 import Navbar from "../molecules/Navbar";
-import songApi from "../../services/SongListAPI"
+import {SongListAPI} from "../../services/SongListAPI"
 
 const defaultFieldValues = {
   title: "",
@@ -42,7 +42,7 @@ const HomePage = () => {
     setLoading(true);
     try {
       songsToAdd.map(console.log);
-      songsToAdd.map(songApi.addSong);
+      songsToAdd.map(SongListAPI.addSong);
        setSnack('Songs Added!')
      } catch (error) {
        console.error(error)
@@ -226,8 +226,8 @@ const HomePage = () => {
                         </TableCell>
                         <TableCell style={{ width: "5%", padding: "0.3em" }}>
                           <TextField
-                            value={song.tonic}
-                            name="tonic"
+                            value={song.detectivesKey}
+                            name="detectivesKey"
                             onChange={handleTextFieldChange}
                             id={index.toString()}
                             size="small"
